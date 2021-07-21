@@ -5,10 +5,11 @@ import {
 } from '@reduxjs/toolkit';
 import { BookData } from './BookData.interface';
 import { RootState } from './store';
+import axios from 'axios';
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async(title: string) => {
-  const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&key=AIzaSyC4QSLTE2fn8nXH-ONLHcM9Kznou42W72w`);
-  return ( await response.json()).items as BookData[];
+  const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&key=AIzaSyC4QSLTE2fn8nXH-ONLHcM9Kznou42W72w`);
+  return response.data.items as BookData[];
 });
 
 export const booksAdapter = createEntityAdapter<BookData>();
