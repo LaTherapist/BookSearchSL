@@ -6,6 +6,6 @@ export interface BookData {
     publishedDate: string;
     imageLinks: {
       thumbnail: string;
-    }
-  },
-};
+    };
+  };
+}
