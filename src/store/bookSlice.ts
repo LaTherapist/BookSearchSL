@@ -9,7 +9,17 @@ import axios from 'axios';
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async(title: string) => {
   const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&key=AIzaSyC4QSLTE2fn8nXH-ONLHcM9Kznou42W72w`);
-  return response.data.items as BookData[];
+  const data: BookData[] = response.data.items;
+
+  const correctLinksData = data.map((book) => {
+    const image = book.volumeInfo.imageLinks;
+    if (image) {
+      image.thumbnail = image.thumbnail.replace('http', 'https');
+    }
+    return book;
+  });
+
+  return correctLinksData;
 });
 
 export const booksAdapter = createEntityAdapter<BookData>();
