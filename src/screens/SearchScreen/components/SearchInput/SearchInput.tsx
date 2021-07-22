@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import SearchImage from '../../../../../assets/SearchImage';
 import { fetchBooks } from '../../../../store/bookSlice';
@@ -14,13 +14,14 @@ const SearchInput = (props: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.container}>
       <TextInput
         onChangeText={(text) => props.handleInput(text)}
         style={styles.input}
         placeholder='Search'
       />
       <TouchableOpacity 
+        style={styles.inputWrapper}
         onPress={() => dispatch(fetchBooks(props.title))}
       >
         <SearchImage
