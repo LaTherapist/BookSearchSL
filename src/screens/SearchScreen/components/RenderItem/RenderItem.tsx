@@ -1,5 +1,6 @@
 import React from 'react';
-import { ListRenderItem, View, Text, Image } from 'react-native';
+import { ListRenderItem, View, Text, Image, TouchableOpacity } from 'react-native';
+import EmptyLikeImage from '../../../../../assets/EmptyLikeImage';
 import { BookData } from '../../../../store/BookData.interface';
 import { styles } from './RenderItem.styles';
 
@@ -33,6 +34,9 @@ const RenderItem: ListRenderItem<BookData> = ({item}) => {
         </View>
         <Text>Publication date: {item.volumeInfo.publishedDate}</Text>
       </View>
+      <TouchableOpacity>
+        <EmptyLikeImage />
+      </TouchableOpacity>
     </View>
   );
 };
