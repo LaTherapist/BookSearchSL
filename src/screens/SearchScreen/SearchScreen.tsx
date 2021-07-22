@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import Books from './components/Books';
 import SearchInput from './components/SearchInput/SearchInput';
 
@@ -8,11 +8,13 @@ const SearchScreen = () => {
 
   return (
     <SafeAreaView>
-      <SearchInput 
-        handleInput={setTitle}
-        title={title}
-      />
-      <Books />
+      <View>
+        <SearchInput 
+          handleInput={setTitle}
+          title={title}
+        />
+        <Books />
+      </View>
     </SafeAreaView>
   )
 }
