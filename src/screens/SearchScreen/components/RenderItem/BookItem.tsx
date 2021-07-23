@@ -2,7 +2,6 @@ import React from 'react'
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
 } from 'react-native';
 import EmptyLikeImage from '../../../../../assets/EmptyLikeImage';
@@ -10,6 +9,7 @@ import {BookData} from '../../../../store/BookData.interface';
 import {styles} from './BookItem.styles';
 import { useNavigation } from '@react-navigation/native';
 import { DescriptionScreenNavigationProp } from '../../../../../types/NavigationTypes';
+import { loadImage } from '../../../../shared/loadimage';
 
 interface ItemProps {
   item: BookData;
@@ -18,24 +18,12 @@ interface ItemProps {
 const BookItem = (props: ItemProps) => {
   const navigation = useNavigation<DescriptionScreenNavigationProp>();
 
-  const loadImage = (item: BookData) => {
-    if (item.volumeInfo.imageLinks) {
-      return (
-        <Image
-          source={{uri: item.volumeInfo.imageLinks.thumbnail}}
-          style={styles.image}
-        />
-      );
-    }
-    return <Image source={require('../../../../../assets/bookIcon.png')} />;
-  };
-
   return (
     <TouchableOpacity style={styles.container}
       activeOpacity={0.5}
       onPress={() => navigation.navigate('Description', {item: props.item})}
     >
-      <View style={styles.imageWrapper}>{loadImage(props.item)}</View>
+      <View style={styles.imageWrapper}>{loadImage(props.item, styles.image)}</View>
       <View style={styles.textWrapper}>
         <Text>
           Author: {props.item.volumeInfo.authors && props.item.volumeInfo?.authors[0]}
@@ -51,6 +39,6 @@ const BookItem = (props: ItemProps) => {
       </TouchableOpacity>
     </TouchableOpacity>
   );
-}
+};
 
 export default BookItem;
