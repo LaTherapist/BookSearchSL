@@ -10,8 +10,9 @@ import FavouritesScreen from './src/screens/FavouritesScreen/FavouritesScreen';
 import DescriptonScreen from './src/screens/DescriptonScreen/DescriptonScreen';
 import LikeImage from './assets/LikeImage';
 import SearchImage from './assets/SearchImage';
+import { RootStackParamList, RootTabParamList } from './types/NavigationTypes';
 
-const SearchStack = createStackNavigator();
+const SearchStack = createStackNavigator<RootStackParamList>();
 
 const SearchStackScreen = () => {
   return (
@@ -22,7 +23,7 @@ const SearchStackScreen = () => {
   );
 };
 
-const FavouritesStack = createStackNavigator();
+const FavouritesStack = createStackNavigator<RootStackParamList>();
 
 const FavouritesStackScreen = () => {
   return (
@@ -33,7 +34,7 @@ const FavouritesStackScreen = () => {
   );
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const App = () => {
   return (
