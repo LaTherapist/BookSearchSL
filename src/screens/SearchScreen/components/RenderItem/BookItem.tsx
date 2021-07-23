@@ -8,12 +8,16 @@ import {
 import EmptyLikeImage from '../../../../../assets/EmptyLikeImage';
 import {BookData} from '../../../../store/BookData.interface';
 import {styles} from './BookItem.styles';
+import { useNavigation } from '@react-navigation/native';
+import { DescriptionScreenNavigationProp } from '../../../../../types/NavigationTypes';
 
 interface ItemProps {
   item: BookData;
 };
 
 const BookItem = (props: ItemProps) => {
+  const navigation = useNavigation<DescriptionScreenNavigationProp>();
+
   const loadImage = (item: BookData) => {
     if (item.volumeInfo.imageLinks) {
       return (
@@ -27,7 +31,10 @@ const BookItem = (props: ItemProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}
+      activeOpacity={0.5}
+      onPress={() => navigation.navigate('Description', {item: props.item})}
+    >
       <View style={styles.imageWrapper}>{loadImage(props.item)}</View>
       <View style={styles.textWrapper}>
         <Text>
@@ -42,7 +49,7 @@ const BookItem = (props: ItemProps) => {
       <TouchableOpacity>
         <EmptyLikeImage />
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 }
 
