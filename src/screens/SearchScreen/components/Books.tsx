@@ -11,7 +11,10 @@ const Books = () => {
   const books = useSelector(selectAll);
 
   if (loading) {
-    return <ActivityIndicator size="large" style={{marginTop: 50}} />;
+    return <ActivityIndicator
+      size="large" color="rgb(15, 200, 15)"
+      style={{marginTop: 50}}
+    />;
   }
 
   return (
