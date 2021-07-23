@@ -4,6 +4,7 @@ export interface BookData {
     title: string;
     authors: string[];
     publishedDate: string;
+    description: string;
     imageLinks: {
       thumbnail: string;
     };
