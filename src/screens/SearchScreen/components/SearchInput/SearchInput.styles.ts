@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'rgba(60, 60, 60, 0.8)',
     borderBottomWidth: 1,
   },
-  inputWrapper: {
+  imageWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
   },
