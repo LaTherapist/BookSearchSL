@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {selectAll} from '../../../store/bookSlice';
-import renderItem from './renderItem/renderItem';
+import renderItem from '../../../shared/renderItem';
 import LoadingIndicator from '../../../shared/LoadingIndicator';
 import keyExtractor from '../../../shared/keyExtractor';
 
