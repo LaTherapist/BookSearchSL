@@ -6,7 +6,7 @@ import SearchInput from './components/SearchInput/SearchInput';
 const SearchScreen = () => {
   return (
     <SafeAreaView>
-      <View >
+      <View>
         <SearchInput />
         <Books />
       </View>

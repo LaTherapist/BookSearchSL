@@ -1,9 +1,9 @@
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {View, Text} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { DescriptionScreenRouteProp } from '../../../types/NavigationTypes';
-import { loadImage } from '../../shared/loadimage';
+import {ScrollView} from 'react-native-gesture-handler';
+import {DescriptionScreenRouteProp} from '../../../types/NavigationTypes';
+import {loadImage} from '../../shared/loadimage';
 import {styles} from './DescriptonScreen.styles';
 
 const DescriptonScreen = () => {
@@ -17,7 +17,9 @@ const DescriptonScreen = () => {
         </View>
         <View style={styles.textRow}>
           <Text style={[styles.text, styles.subtitle]}>Author:</Text>
-          <Text style={styles.text}>{route.params.item.volumeInfo?.authors[0]}</Text>
+          <Text style={styles.text}>
+            {route.params.item.volumeInfo?.authors[0]}
+          </Text>
         </View>
         <View style={styles.textRow}>
           <Text style={[styles.text, styles.subtitle]}>Title:</Text>
@@ -25,11 +27,15 @@ const DescriptonScreen = () => {
         </View>
         <View style={styles.textRow}>
           <Text style={[styles.text, styles.subtitle]}>Publication Date:</Text>
-          <Text style={styles.text}>{route.params.item.volumeInfo.publishedDate}</Text>
+          <Text style={styles.text}>
+            {route.params.item.volumeInfo.publishedDate}
+          </Text>
         </View>
         <View>
           <Text style={[styles.text, styles.subtitle]}>Description:</Text>
-          <Text style={styles.text}>{route.params.item.volumeInfo?.description}</Text>
+          <Text style={styles.text}>
+            {route.params.item.volumeInfo?.description}
+          </Text>
         </View>
       </View>
     </ScrollView>

@@ -10,7 +10,7 @@ import FavouritesScreen from './src/screens/FavouritesScreen/FavouritesScreen';
 import DescriptonScreen from './src/screens/DescriptonScreen/DescriptonScreen';
 import LikeImage from './assets/LikeImage';
 import SearchImage from './assets/SearchImage';
-import { RootStackParamList, RootTabParamList } from './types/NavigationTypes';
+import {RootStackParamList, RootTabParamList} from './types/NavigationTypes';
 
 const SearchStack = createStackNavigator<RootStackParamList>();
 

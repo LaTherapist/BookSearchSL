@@ -1,7 +1,6 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { BookData } from '../store/BookData.interface';
-
+import {Image} from 'react-native';
+import {BookData} from '../store/BookData.interface';
 
 export const loadImage = (item: BookData, style: {}) => {
   if (item.volumeInfo.imageLinks) {

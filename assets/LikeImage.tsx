@@ -2,7 +2,11 @@ import React from 'react';
 import Svg, {Path, G} from 'react-native-svg';
 import {SvgProps} from './SvgProps.interface';
 
-const LikeImage = ({color = 'rgba(189, 34, 17, 0.8)', width = 25, height = 25}: SvgProps) => {
+const LikeImage = ({
+  color = 'rgba(189, 34, 17, 0.8)',
+  width = 25,
+  height = 25,
+}: SvgProps) => {
   return (
     <Svg height={height} width={width} viewBox="0 0 25 25">
       <G transform="translate(0 -1028.4)">
