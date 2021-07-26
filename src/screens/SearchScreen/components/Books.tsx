@@ -5,6 +5,7 @@ import {RootState} from '../../../store/store';
 import {selectAll} from '../../../store/bookSlice';
 import renderItem from './renderItem/renderItem';
 import LoadingIndicator from '../../../shared/LoadingIndicator';
+import keyExtractor from '../../../shared/keyExtractor';
 
 const Books = () => {
   const {loading} = useSelector((state: RootState) => state.books);
@@ -18,7 +19,7 @@ const Books = () => {
     <FlatList
       data={books}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={keyExtractor}
       refreshing={true}
     />
   );
