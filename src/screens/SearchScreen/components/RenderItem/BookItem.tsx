@@ -6,6 +6,9 @@ import {styles} from './BookItem.styles';
 import {useNavigation} from '@react-navigation/native';
 import {DescriptionScreenNavigationProp} from '../../../../../types/NavigationTypes';
 import {loadImage} from '../../../../shared/loadimage';
+import {useDispatch, useSelector} from 'react-redux';
+import {setFavourite, deleteFavourite} from '../../../../store/favouritesSlice';
+import {RootState} from '../../../../store/store';
 
 interface ItemProps {
   item: BookData;
@@ -13,6 +16,15 @@ interface ItemProps {
 
 const BookItem = (props: ItemProps) => {
   const navigation = useNavigation<DescriptionScreenNavigationProp>();
+  const dispatch = useDispatch();
+  const {favourites} = useSelector((state: RootState) => state.favourites);
+  const currentId = favourites[props.item.id];
+
+  const handlePress = () => {
+    currentId
+      ? dispatch(deleteFavourite(props.item))
+      : dispatch(setFavourite(props.item));
+  };
 
   return (
     <TouchableOpacity
@@ -24,7 +36,8 @@ const BookItem = (props: ItemProps) => {
       </View>
       <View style={styles.textWrapper}>
         <Text>
-          Author: {props.item.volumeInfo.authors && props.item.volumeInfo?.authors[0]}
+          Author:
+          {props.item.volumeInfo.authors && props.item.volumeInfo?.authors[0]}
         </Text>
         <View style={styles.titleWrapper}>
           <Text style={styles.category}>Title:</Text>
@@ -32,7 +45,7 @@ const BookItem = (props: ItemProps) => {
         </View>
         <Text>Publication date: {props.item.volumeInfo.publishedDate}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handlePress}>
         <EmptyLikeImage />
       </TouchableOpacity>
     </TouchableOpacity>
