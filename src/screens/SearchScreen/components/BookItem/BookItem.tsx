@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import EmptyLikeImage from '../../../../../assets/EmptyLikeImage';
 import {BookData} from '../../../../store/BookData.interface';
 import {styles} from './BookItem.styles';
 import {useNavigation} from '@react-navigation/native';
@@ -9,6 +8,7 @@ import {loadImage} from '../../../../shared/loadimage';
 import {useDispatch, useSelector} from 'react-redux';
 import {setFavourite, deleteFavourite} from '../../../../store/favouritesSlice';
 import {RootState} from '../../../../store/store';
+import Favourite from './Favourite';
 
 interface ItemProps {
   item: BookData;
@@ -18,7 +18,7 @@ const BookItem = (props: ItemProps) => {
   const navigation = useNavigation<DescriptionScreenNavigationProp>();
   const dispatch = useDispatch();
   const {favourites} = useSelector((state: RootState) => state.favourites);
-  const currentId = favourites[props.item.id];
+  const currentId = Boolean(favourites[props.item.id]);
 
   const handlePress = () => {
     currentId
@@ -46,7 +46,7 @@ const BookItem = (props: ItemProps) => {
         <Text>Publication date: {props.item.volumeInfo.publishedDate}</Text>
       </View>
       <TouchableOpacity onPress={handlePress}>
-        <EmptyLikeImage />
+        <Favourite isFavourite={currentId} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
