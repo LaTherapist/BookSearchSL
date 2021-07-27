@@ -4,7 +4,6 @@ import favouritesReducer from './favouritesSlice';
 import {combineReducers} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import thunk from 'redux-thunk';
 
 const persistConfig = {
   key: 'root',
@@ -20,7 +19,9 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [thunk],
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({serializableCheck: false});
+  },
 });
 
 export let persistor = persistStore(store);
