@@ -11,6 +11,8 @@ import DescriptonScreen from './src/screens/DescriptonScreen/DescriptonScreen';
 import LikeImage from './assets/LikeImage';
 import SearchImage from './assets/SearchImage';
 import {RootStackParamList, RootTabParamList} from './types/NavigationTypes';
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistor} from './src/store/store';
 
 const SearchStack = createStackNavigator<RootStackParamList>();
 
@@ -39,22 +41,24 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({route}) => ({
-            tabBarIcon: () => {
-              if (route.name === 'Favourites') {
-                return <LikeImage />;
-              }
-              if (route.name === 'Search') {
-                return <SearchImage />;
-              }
-            },
-          })}>
-          <Tab.Screen name="Search" component={SearchStackScreen} />
-          <Tab.Screen name="Favourites" component={FavouritesStackScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({route}) => ({
+              tabBarIcon: () => {
+                if (route.name === 'Favourites') {
+                  return <LikeImage />;
+                }
+                if (route.name === 'Search') {
+                  return <SearchImage />;
+                }
+              },
+            })}>
+            <Tab.Screen name="Search" component={SearchStackScreen} />
+            <Tab.Screen name="Favourites" component={FavouritesStackScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };

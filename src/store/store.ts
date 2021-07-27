@@ -1,13 +1,28 @@
 import {configureStore} from '@reduxjs/toolkit';
 import bookReducer from './bookSlice';
 import favouritesReducer from './favouritesSlice';
+import {combineReducers} from 'redux';
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import thunk from 'redux-thunk';
 
-export const store = configureStore({
-  reducer: {
-    books: bookReducer,
-    favourites: favouritesReducer,
-  },
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
+
+const reducers = combineReducers({
+  favourites: favouritesReducer,
+  books: bookReducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [thunk],
+});
+
+export let persistor = persistStore(store);
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
