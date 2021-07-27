@@ -2,9 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {BookData} from './BookData.interface';
 
 interface InitialState {
-  favourites: {
-    [id: string]: BookData;
-  };
+  favourites: Record<string, BookData>;
 }
 
 const initialState: InitialState = {
